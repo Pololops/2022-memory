@@ -5,9 +5,10 @@ import {
   getCards, 
   startGame,
   testCombination, 
+  searchNotFoundCard, 
   initNextTurn,
   increaseScore,
-  decreaseScore
+  decreaseScore,
 } from '../../actions';
 
 import './App.scss';
@@ -42,6 +43,7 @@ export default function App() {
         dispatch(decreaseScore());
       }
 
+      dispatch(searchNotFoundCard());
       setTimeout(() => {
         dispatch(initNextTurn());
       }, 1500);

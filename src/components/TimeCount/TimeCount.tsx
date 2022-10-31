@@ -22,6 +22,8 @@ export default function TimeCount() {
         setTime((prevTime) => prevTime - 1 / 100);
       }, 10);
     }
+
+    return () => clearInterval(timerInterval);
   }, [isModalVisible]);
 
   useEffect(() => {

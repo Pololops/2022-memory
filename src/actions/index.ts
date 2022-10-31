@@ -4,6 +4,7 @@ export const GET_CARDS = 'GET_CARDS';
 export const FLIP_CARD = 'FLIP_CARD';
 export const START_GAME = 'START_GAME';
 export const TEST_COMBINATION = 'TEST_COMBINATION';
+export const SEARCH_NOT_FOUND_CARD = 'SEARCH_NOT_FOUND_CARD';
 export const INIT_NEXT_TURN = 'INIT_NEXT_TURN';
 export const STOP_GAME = 'STOP_GAME';
 export const INCREASE_SCORE = 'INCREASE_SCORE';
@@ -20,6 +21,7 @@ type flipCardAction = Action<typeof FLIP_CARD, number>;
 type startGameAction = Action<typeof START_GAME, null>;
 type stopGameAction = Action<typeof STOP_GAME, null>;
 type testCombinationAction = Action<typeof TEST_COMBINATION, null>;
+type searchNotFoundCardAction = Action<typeof SEARCH_NOT_FOUND_CARD, null>;
 type initNextTurnAction = Action<typeof INIT_NEXT_TURN, null>;
 type increaseScoreAction = Action<typeof INCREASE_SCORE, number>;
 type decreaseScoreAction = Action<typeof DECREASE_SCORE, number>;
@@ -30,6 +32,9 @@ export type Actions =
     flipCardAction | 
     startGameAction | 
     stopGameAction | 
+    testCombinationAction | 
+    searchNotFoundCardAction | 
+    initNextTurnAction |
     increaseScoreAction | 
     decreaseScoreAction |
     anyActions;
@@ -71,6 +76,13 @@ export function startGame(): startGameAction {
  */
 export function testCombination(): testCombinationAction {
     return createAction(TEST_COMBINATION, null);
+}
+
+/**
+ * Action type function to search a not found card in cards
+ */
+export function searchNotFoundCard(): searchNotFoundCardAction {
+    return createAction(SEARCH_NOT_FOUND_CARD, null);
 }
 
 /**

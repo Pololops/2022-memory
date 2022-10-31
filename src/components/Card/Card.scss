@@ -37,7 +37,7 @@
 
 	&.success {
 		cursor: default;
-		
+
 		& .card__face--front {
 			background-color: vars.$cards-success-color;
 		}
@@ -45,7 +45,7 @@
 
 	&.fail {
 		cursor: default;
-		
+
 		& .card__face--front {
 			background-color: vars.$cards-fail-color;
 		}

@@ -78,3 +78,13 @@ export function cancelWrongCombination(cards: Card[]): Card[] {
     return card;
   });
 }
+
+/**
+ * Funtion to test if all cards are found
+ * @returns boolean - true: if all cards are found | false: otherwise
+ */
+export function isAllCardsFound(cards: Card[]): boolean {
+  const foundCard = cards.find(({isSucceed}) => isSucceed === false);
+
+  return !foundCard ? true : false;
+}
