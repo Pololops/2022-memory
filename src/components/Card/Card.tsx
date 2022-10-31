@@ -40,11 +40,13 @@ export default function Card({
       `}
       onClick={onClickHandler}
     >
-      <div className="card__face card__face--back"></div>
-      <div 
-        className="card__face card__face--front"
-        style={{backgroundImage: `url(${image})`}}
-      ></div>
+      <div className="card__inner">
+        <div className="card__inner__face card__inner__face--back"></div>
+        <div 
+          className="card__inner__face card__inner__face--front"
+          style={{backgroundImage: `url(${image})`}}
+        ></div>
+      </div>
     </li>
   )
 }
