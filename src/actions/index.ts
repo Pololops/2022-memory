@@ -22,7 +22,12 @@ type flipCardAction = Action<typeof FLIP_CARD, number>;
 type startGameAction = Action<typeof START_GAME, null>;
 type stopGameAction = Action<typeof STOP_GAME, null>;
 
-export type Actions = getCardsAction | flipCardAction | startGameAction | stopGameAction | anyActions;
+export type Actions = 
+    getCardsAction | 
+    flipCardAction | 
+    startGameAction | 
+    stopGameAction | 
+    anyActions;
 
 export function getAndInitCards(cards: CardFromData[]): getCardsAction {
     return createAction(GET_CARDS, cards);

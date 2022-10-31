@@ -1,7 +1,11 @@
 import initialState from '../state';
 import type { RootState } from '../state';
 
-import { duplicateCards, resetCards } from '../middlewares';
+import { 
+  duplicateCards, 
+  resetCards, 
+  shuffleCards, 
+} from '../middlewares';
 
 import type { 
   Actions
@@ -41,8 +45,11 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
     }
 
     case START_GAME: {
+      const shuffledCards = shuffleCards(state.cards);
+
       return {
         ...state,
+        cards: [...shuffledCards],
         score: 0,
         gameIsOn: true,
         isModalVisible: false,
@@ -60,46 +67,5 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
     default: return state;
   }
 }
-
-// const OLDreducer = (state = initialState, action: Actions) => {
-//   switch (action.type) {
-//     case GET_AND_INIT_CARDS: {
-//       const cards = duplicateCards(action.payload);
-//       const initializedCards = resetCards(cards);
-//     
-//       return {
-//         ...state,
-//         cards: [...initializedCards],
-//       };
-//     }
-// 
-//     case FLIP_CARD: {
-//       const updatedCards = state.cards.map((card) => {
-//         if(card.id === action.payload) {
-//           return { ...card, isFlipped: true }
-//         }
-//         return card;
-//       });
-// 
-//       return {
-//         ...state,
-//         cards: updatedCards,
-//       };
-//     }
-// 
-//     case START_GAME: {
-//       return {
-//         ...state,
-//         score: 0,
-//         gameIsOn: true,
-//         isModalVisible: false,
-//       };
-//     }
-// 
-//     default: {
-//       return state;
-//     }
-//   }
-// }
 
 export default reducer;
