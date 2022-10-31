@@ -47,7 +47,10 @@ export default function App() {
       <TimeCount />
       <Modal>
         <Message text="Bienvenue dans le jeu du Memory !" />
-        <Button text="Commencer une partie" onClick={clickButtonHandler} />
+        <Button 
+          text="Commencer une partie" 
+          onClick={clickButtonHandler} 
+        />
       </Modal>
     </div>
   )
