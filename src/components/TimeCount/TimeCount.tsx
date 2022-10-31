@@ -21,6 +21,8 @@ export default function TimeCount() {
       timerInterval = setInterval(() => {
         setTime((prevTime) => prevTime - 1 / 100);
       }, 10);
+    } else {
+      setTime(maxTime);
     }
 
     return () => clearInterval(timerInterval);
@@ -30,7 +32,6 @@ export default function TimeCount() {
     if (time <= 0) {
       clearInterval(timerInterval);
       dispatch(stopGame());
-      setTime(maxTime);
     }
   }, [time]);
 
