@@ -9,22 +9,26 @@ export type Card = {
   name: string,
   url: string,
   isFlipped: boolean,
+  isSucceed: boolean,
+  isFailed: boolean,
 }
 
 export type RootState = {
   gameIsOn: boolean,
   cards: Card[] | [];
-  isModalVisible: boolean,
   score: number,
-  counter: number
+  counter: number,
+  isModalVisible: boolean,
+  turn: {id: number, name: string}[] | [],
 }
 
 const initialState: RootState = {
-  gameIsOn: true,
+  gameIsOn: false, // prevent playing when game is off
   cards: [],
-  isModalVisible: true,
-  score: 0,
-  counter: 60,
+  score: 0, // The starting score
+  counter: 60, // The time before game over in seconds
+  isModalVisible: true, // The state of the welcome and end modal
+  turn: [], // The buffer for a game turn, contains two played cards max to compare
 };
 
 export default initialState;

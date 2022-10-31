@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 import useAppDispatch from '../../hooks/useDispatch';
+import useAppSelector from '../../hooks/useSelector';
 import { 
-  getAndInitCards, 
+  getCards, 
   startGame,
+  testCombination, 
+  initNextTurn,
 } from '../../actions';
 
 import './App.scss';
@@ -17,14 +20,25 @@ import Button from '../Button/Button';
 
 export default function App() {
   const dispatch = useAppDispatch();
+  const turn = useAppSelector((state) => state.turn);
 
   const clickButtonHandler = () => {
     dispatch(startGame());
   }
 
   useEffect(() => {
-    dispatch(getAndInitCards(cards));
+    dispatch(getCards(cards));
   }, []);
+
+  useEffect(() => {
+    if (turn.length > 1) {
+      dispatch(testCombination());
+
+      setTimeout(() => {
+        dispatch(initNextTurn());
+      }, 1500);
+    }
+  }, [turn]);
 
   return (
     <div className="app">

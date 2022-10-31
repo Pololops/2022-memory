@@ -5,6 +5,8 @@ import {
   duplicateCards, 
   resetCards, 
   shuffleCards, 
+  validateCombination, 
+  cancelWrongCombination, 
 } from '../utils/cardsOperator';
 
 import type { 
@@ -16,6 +18,8 @@ import {
   FLIP_CARD,
   START_GAME, 
   STOP_GAME, 
+  TEST_COMBINATION, 
+  INIT_NEXT_TURN, 
 } from '../actions';
 
 const reducer = (state: RootState = initialState, action: Actions): RootState => {
@@ -31,8 +35,13 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
     }
 
     case FLIP_CARD: {
+      const updatedTurn = [...state.turn];
+
       const updatedCards = state.cards.map((card) => {
         if(card.id === action.payload) {
+          // Add id and name of flipped card into the "turn" key of state, as buffer
+          updatedTurn.push({ id: card.id, name: card.name });
+          
           return { ...card, isFlipped: true }
         }
         return card;
@@ -41,6 +50,7 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
       return {
         ...state,
         cards: updatedCards,
+        turn: updatedTurn,
       };
     }
 
@@ -54,6 +64,25 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
         score: 0,
         gameIsOn: true,
         isModalVisible: false,
+      };
+    }
+
+    case TEST_COMBINATION: {
+      const updatedCards = validateCombination(state.cards, state.turn);
+
+      return {
+        ...state,
+        cards: updatedCards,
+      };
+    }
+
+    case INIT_NEXT_TURN: {
+      const updatedCards = cancelWrongCombination(state.cards);
+
+      return {
+        ...state,
+        cards: updatedCards,
+        turn: [],
       };
     }
 

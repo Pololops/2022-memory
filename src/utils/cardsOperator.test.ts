@@ -14,7 +14,7 @@ const fakeCards = fakeCardsData.map((card) => {
   return {
     ...card,
     isFlipped: false,
-    isSucced: false,
+    isSucceed: false,
     isFailed: false,
   }
 });

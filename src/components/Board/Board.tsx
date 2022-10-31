@@ -11,13 +11,24 @@ export default function Board() {
     <ul data-testid="board" className="board">
       {
         cards.length > 0 && 
-        cards.map(({id, name, url, isFlipped}) => (
+        cards.map((
+          {
+            id, 
+            name, 
+            url, 
+            isFlipped, 
+            isSucceed, 
+            isFailed,
+          }
+        ) => (
           <Card 
             key={id} 
             id={id} 
             name={name}
             image={url} 
             isFlipped={isFlipped} 
+            isSucceed={isSucceed} 
+            isFailed={isFailed} 
           />
         ))
       }

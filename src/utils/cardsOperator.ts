@@ -16,7 +16,7 @@ export function resetCards(cards: Card[] | CardFromData[]): Card[] {
     return {
       ...card,
       isFlipped: false,
-      isSucced: false,
+      isSucceed: false,
       isFailed: false,
     }
   });
@@ -33,4 +33,28 @@ export function shuffleCards(cards: Card[]): Card[] {
   }
 
   return shuffledCards;
+}
+
+export function validateCombination(cards: Card[], turn: {id: number, name: string}[]): Card[] {
+  return cards.map((card) => {
+    if (card.isFlipped && !card.isSucceed) {
+      if (turn[0].name === turn[1].name && turn[0].id !== turn[1].id) {
+        return { ...card, isSucceed: true }
+      } else {
+        return { ...card, isFailed: true }
+      }
+    }
+
+    return card
+  });
+}
+
+export function cancelWrongCombination(cards: Card[]): Card[] {
+  return cards.map((card) => {
+    if (card.isFailed) {
+      return { ...card, isFlipped: false, isFailed: false }
+    }
+
+    return card;
+  });
 }
