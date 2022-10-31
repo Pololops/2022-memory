@@ -1,12 +1,25 @@
-import { useState } from 'react';
+import useAppDispatch from '../../hooks/useDispatch';
+import { flipCard } from '../../actions';
 
 import './Card.scss';
 
-export default function Card() {
-  const [isFlipped, setIsFlipped] = useState(false);
+interface Props {
+  id: number,
+  name: string,
+  image: string,
+  isFlipped: boolean,
+}
+
+export default function Card({
+  id, 
+  name, 
+  image, 
+  isFlipped, 
+}: Props) {
+  const dispatch = useAppDispatch();
 
   const onClickHandler = () => {
-    setIsFlipped(true);
+    dispatch(flipCard(id));
   }
 
   return (
@@ -14,8 +27,11 @@ export default function Card() {
       className={`card ${isFlipped ? `flipped` : ``}`}
       onClick={onClickHandler}
     >
-      <div className="card__face card__face--back"></div>
-      <div className="card__face card__face--front"></div>
+      <div className="card__face card__face--back">{name}</div>
+      <div 
+        className="card__face card__face--front"
+        style={{backgroundImage: `url(${image})`}}
+      ></div>
     </li>
   )
 }
