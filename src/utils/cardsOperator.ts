@@ -1,5 +1,9 @@
 import type { CardFromData, Card } from '../state';
 
+/**
+ * Funtion to duplicate cards
+ * @returns All Duplicate Cards
+ */
 export function duplicateCards(cards: CardFromData[]): CardFromData[] {
   const duplicatedCards = cards.map((card) => {
     return {
@@ -11,6 +15,10 @@ export function duplicateCards(cards: CardFromData[]): CardFromData[] {
   return [...cards, ...duplicatedCards];
 }
 
+/**
+ * Funtion to reset all cards informations
+ * @returns Cards at the original state
+ */
 export function resetCards(cards: Card[] | CardFromData[]): Card[] {
   return cards.map((card) => {
     return {
@@ -22,6 +30,10 @@ export function resetCards(cards: Card[] | CardFromData[]): Card[] {
   });
 }
 
+/**
+ * Funtion to random shuffle cards
+ * @returns Shuffled Cards
+ */
 export function shuffleCards(cards: Card[]): Card[] {
   let shuffledCards = [...cards];
 
@@ -35,6 +47,10 @@ export function shuffleCards(cards: Card[]): Card[] {
   return shuffledCards;
 }
 
+/**
+ * Funtion to test if two cards are the same
+ * @returns All cards with indications in them if they are found or not
+ */
 export function validateCombination(cards: Card[], turn: {id: number, name: string}[]): Card[] {
   return cards.map((card) => {
     if (card.isFlipped && !card.isSucceed) {
@@ -49,6 +65,10 @@ export function validateCombination(cards: Card[], turn: {id: number, name: stri
   });
 }
 
+/**
+ * Funtion to reset the cards of a wrong combination
+ * @returns All cards
+ */
 export function cancelWrongCombination(cards: Card[]): Card[] {
   return cards.map((card) => {
     if (card.isFailed) {
