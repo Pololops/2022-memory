@@ -1,0 +1,19 @@
+/* Cards colors */
+$board-bg-color: #6e6d70;
+$cards-back-color: #130f12;
+$cards-success-color: #45ff53;
+$cards-fail-color: #ec1a3e;
+
+/* Card sqared size */
+$card-length: 120px;
+
+/* Timebar colors */
+$time-bg-color: #d2d1d2;
+$time-progress-bg-color: #ff1a16;
+$time-progress-bg-gradient-color: repeating-linear-gradient(
+	140deg,
+  #ff1a16,
+  #ff1a16 10px,
+	#f98788 10px,
+	#f98788 20px
+);
