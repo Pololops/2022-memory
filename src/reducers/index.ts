@@ -20,6 +20,8 @@ import {
   STOP_GAME, 
   TEST_COMBINATION, 
   INIT_NEXT_TURN, 
+  INCREASE_SCORE, 
+  DECREASE_SCORE, 
 } from '../actions';
 
 const reducer = (state: RootState = initialState, action: Actions): RootState => {
@@ -91,6 +93,27 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
         ...state,
         gameIsOn: false,
         isModalVisible: true,
+      };
+    }
+
+    case INCREASE_SCORE: {
+      const newScore = state.score + action.payload;
+
+      return {
+        ...state,
+        score: newScore,
+      };
+    }
+
+    case DECREASE_SCORE: {
+      let newScore = state.score - action.payload;
+      if (newScore < 0) {
+        newScore = 0
+      };
+
+      return {
+        ...state,
+        score: newScore,
       };
     }
 
