@@ -1,0 +1,18 @@
+@use 'src/styles/_vars';
+
+.board {
+	max-width: ((vars.$card-length * 4) + (20px * 3));
+	padding: 20px;
+	margin: 0;
+	list-style: none;
+	border-radius: 5px;
+	background-color: vars.$board-bg-color;
+	box-shadow: 0 5px 10px dimgray;
+	perspective: 1000px;
+
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
