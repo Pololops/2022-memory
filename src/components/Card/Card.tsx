@@ -6,7 +6,6 @@ import './Card.scss';
 
 interface Props {
   id: number,
-  name: string,
   image: string,
   isFlipped: boolean,
   isSucceed: boolean,
@@ -15,7 +14,6 @@ interface Props {
 
 export default function Card({
   id, 
-  name, 
   image, 
   isFlipped, 
   isSucceed, 
@@ -42,7 +40,7 @@ export default function Card({
       `}
       onClick={onClickHandler}
     >
-      <div className="card__face card__face--back">{name}</div>
+      <div className="card__face card__face--back"></div>
       <div 
         className="card__face card__face--front"
         style={{backgroundImage: `url(${image})`}}

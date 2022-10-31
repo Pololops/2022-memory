@@ -24,7 +24,6 @@ export default function Board() {
           <Card 
             key={id} 
             id={id} 
-            name={name}
             image={url} 
             isFlipped={isFlipped} 
             isSucceed={isSucceed} 
