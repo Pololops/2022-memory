@@ -1,15 +1,18 @@
+import useAppSelector from '../../hooks/useSelector';
+
 import './Modal.scss';
 
-interface Props {
+interface Children {
   children: JSX.Element | JSX.Element[],
-  isVisible: boolean,
 }
 
-export default function Modal({children, isVisible}: Props) {
+export default function Modal({ children }: Children) {
+  const isModalVisible = useAppSelector((state) => state.isModalVisible);
+
   return (
     <div 
       data-testid="modal" 
-      className={`modal ${!isVisible ? 'hide' : ''}`}
+      className={`modal ${!isModalVisible ? 'hide' : ''}`}
     >
       {children}
     </div>

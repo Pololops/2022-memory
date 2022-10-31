@@ -1,17 +1,22 @@
 import initialState from '../state';
+import type { RootState } from '../state';
 
-import type { ActionTypes } from '../actions';
 import { duplicateCards, resetCards } from '../middlewares';
 
-import { 
-  GET_AND_INIT_CARDS, 
-  FLIP_CARD,
+import type { 
+  Actions
 } from '../actions';
 
-// ! Find a way to delete the type "any" on "action" parameter
-const reducer = (state = initialState, action: ActionTypes | any) => {
+import { 
+  GET_CARDS, 
+  FLIP_CARD,
+  START_GAME, 
+  STOP_GAME, 
+} from '../actions';
+
+const reducer = (state: RootState = initialState, action: Actions): RootState => {
   switch (action.type) {
-    case GET_AND_INIT_CARDS: {
+    case GET_CARDS: {
       const cards = duplicateCards(action.payload);
       const initializedCards = resetCards(cards);
     
@@ -35,10 +40,66 @@ const reducer = (state = initialState, action: ActionTypes | any) => {
       };
     }
 
-    default: {
-      return state;
+    case START_GAME: {
+      return {
+        ...state,
+        score: 0,
+        gameIsOn: true,
+        isModalVisible: false,
+      };
     }
+
+    case STOP_GAME: {
+      return {
+        ...state,
+        gameIsOn: false,
+        isModalVisible: true,
+      };
+    }
+
+    default: return state;
   }
 }
+
+// const OLDreducer = (state = initialState, action: Actions) => {
+//   switch (action.type) {
+//     case GET_AND_INIT_CARDS: {
+//       const cards = duplicateCards(action.payload);
+//       const initializedCards = resetCards(cards);
+//     
+//       return {
+//         ...state,
+//         cards: [...initializedCards],
+//       };
+//     }
+// 
+//     case FLIP_CARD: {
+//       const updatedCards = state.cards.map((card) => {
+//         if(card.id === action.payload) {
+//           return { ...card, isFlipped: true }
+//         }
+//         return card;
+//       });
+// 
+//       return {
+//         ...state,
+//         cards: updatedCards,
+//       };
+//     }
+// 
+//     case START_GAME: {
+//       return {
+//         ...state,
+//         score: 0,
+//         gameIsOn: true,
+//         isModalVisible: false,
+//       };
+//     }
+// 
+//     default: {
+//       return state;
+//     }
+//   }
+// }
 
 export default reducer;

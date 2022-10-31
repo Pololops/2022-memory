@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import useAppSelector from '../../hooks/useSelector';
+import useAppDispatch from '../../hooks/useDispatch';
+import { stopGame } from '../../actions';
 
 import './TimeCount.scss';
 import ProgressBar from './ProgressBar';
@@ -6,20 +9,25 @@ import ProgressBar from './ProgressBar';
 let timerInterval: ReturnType<typeof setInterval>;
 
 export default function TimeCount() {
-  const maxTime = 60;
+  const dispatch = useAppDispatch();
+  
+  const isModalVisible = useAppSelector((state) => state.isModalVisible);
+  const maxTime = useAppSelector((state) => state.counter);
   const [time, setTime] = useState(maxTime);
 
   useEffect(() => {
+    if (!isModalVisible) {
+      // Decrease time by 1 every second
       timerInterval = setInterval(() => {
-        setTime((prevTime) => prevTime - 0.01);
+        setTime((prevTime) => prevTime - 1 / 100);
       }, 10);
-
-      return () => clearInterval(timerInterval);
-  }, []);
+    }
+  }, [isModalVisible]);
 
   useEffect(() => {
     if (time <= 0) {
       clearInterval(timerInterval);
+      dispatch(stopGame());
       setTime(maxTime);
     }
   }, [time]);

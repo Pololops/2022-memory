@@ -12,11 +12,19 @@ export type Card = {
 }
 
 export type RootState = {
+  gameIsOn: boolean,
   cards: Card[] | [];
+  isModalVisible: boolean,
+  score: number,
+  counter: number
 }
 
 const initialState: RootState = {
+  gameIsOn: true,
   cards: [],
+  isModalVisible: true,
+  score: 0,
+  counter: 60,
 };
 
 export default initialState;

@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import useAppDispatch from '../../hooks/useDispatch';
+import { 
+  getAndInitCards, 
+  startGame,
+} from '../../actions';
 
 import './App.scss';
 import cards from '../../assets/data/cards.json';
-
-import { useEffect } from 'react';
-import useAppDispatch from '../../hooks/useDispatch';
-import { getAndInitCards } from '../../actions';
 
 import Score from '../Score/Score';
 import Board from '../Board/Board';
@@ -17,10 +18,8 @@ import Button from '../Button/Button';
 export default function App() {
   const dispatch = useAppDispatch();
 
-  const [isModalVisible, setIsModalVisible] = useState(true);
-
   const clickButtonHandler = () => {
-    setIsModalVisible(false);
+    dispatch(startGame());
   }
 
   useEffect(() => {
@@ -32,7 +31,7 @@ export default function App() {
       <Score />
       <Board />
       <TimeCount />
-      <Modal isVisible={isModalVisible}>
+      <Modal>
         <Message text="Bienvenue dans le jeu du Memory !" />
         <Button text="Commencer une partie" onClick={clickButtonHandler} />
       </Modal>
