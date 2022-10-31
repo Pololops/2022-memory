@@ -65,6 +65,7 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
         score: 0,
         gameIsOn: true,
         isModalVisible: false,
+        turnNumber: state.turnNumber + 1,
       };
     }
 

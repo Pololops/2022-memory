@@ -7,7 +7,7 @@ export default function Score() {
 
   return (
     <p data-testid="score" className="score">
-      Votre score est de {score} point{score > 0 && 's'}
+      Votre score est de {score} point{score > 1 && 's'}
     </p>
   )
 }

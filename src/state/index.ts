@@ -20,6 +20,7 @@ export type RootState = {
   counter: number,
   isModalVisible: boolean,
   turn: {id: number, name: string}[] | [],
+  turnNumber: number,
 }
 
 const initialState: RootState = {
@@ -29,6 +30,7 @@ const initialState: RootState = {
   counter: 60, // The time before game over in seconds
   isModalVisible: true, // The state of the welcome and end modal
   turn: [], // The buffer for a game turn, contains two played cards max to compare
+  turnNumber: 0, // The total number of game
 };
 
 export default initialState;
