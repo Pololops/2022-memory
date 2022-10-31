@@ -5,7 +5,7 @@ import {
   duplicateCards, 
   resetCards, 
   shuffleCards, 
-} from '../middlewares';
+} from '../utils/cardsOperator';
 
 import type { 
   Actions
@@ -45,11 +45,12 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
     }
 
     case START_GAME: {
-      const shuffledCards = shuffleCards(state.cards);
+      const newsCards = resetCards(state.cards);
+      const shuffledNewCards = shuffleCards(newsCards);
 
       return {
         ...state,
-        cards: [...shuffledCards],
+        cards: [...shuffledNewCards],
         score: 0,
         gameIsOn: true,
         isModalVisible: false,

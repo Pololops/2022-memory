@@ -4,7 +4,7 @@ export function duplicateCards(cards: CardFromData[]): CardFromData[] {
   const duplicatedCards = cards.map((card) => {
     return {
       ...card,
-      id: card.id + 8,
+      id: card.id + cards.length,
     }
   });
 
