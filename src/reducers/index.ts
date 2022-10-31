@@ -8,7 +8,6 @@ import {
   shuffleCards, 
   validateCombination, 
   cancelWrongCombination, 
-  isAllCardsFound, 
 } from '../utils/cardsOperations';
 
 import type { Actions } from '../actions';
@@ -19,7 +18,6 @@ import {
   START_GAME, 
   STOP_GAME, 
   TEST_COMBINATION, 
-  SEARCH_NOT_FOUND_CARD, 
   INIT_NEXT_TURN, 
   INCREASE_SCORE, 
   DECREASE_SCORE, 
@@ -76,16 +74,6 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
       return {
         ...state,
         cards: updatedCards,
-      };
-    }
-
-    case SEARCH_NOT_FOUND_CARD: {
-      const isCardsFound = isAllCardsFound(state.cards);
-
-      return {
-        ...state,
-        gameIsOn: !isCardsFound,
-        isModalVisible: isCardsFound,
       };
     }
 

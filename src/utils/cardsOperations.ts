@@ -4,7 +4,7 @@ import type { CardFromData, Card } from '../state';
  * Funtion to duplicate cards
  * @returns All Duplicate Cards
  */
-export function duplicateCards(cards: CardFromData[]): CardFromData[] {
+export const duplicateCards = (cards: CardFromData[]): CardFromData[] => {
   const duplicatedCards = cards.map((card) => {
     return {
       ...card,
@@ -19,7 +19,7 @@ export function duplicateCards(cards: CardFromData[]): CardFromData[] {
  * Funtion to reset all cards informations
  * @returns Cards at the original state
  */
-export function resetCards(cards: Card[] | CardFromData[]): Card[] {
+export const resetCards = (cards: Card[] | CardFromData[]): Card[] => {
   return cards.map((card) => {
     return {
       ...card,
@@ -34,7 +34,7 @@ export function resetCards(cards: Card[] | CardFromData[]): Card[] {
  * Funtion to random shuffle cards
  * @returns Shuffled Cards
  */
-export function shuffleCards(cards: Card[]): Card[] {
+export const shuffleCards = (cards: Card[]): Card[] => {
   let shuffledCards = [...cards];
 
   for (let i = shuffledCards.length -1; i > 0; i--) {
@@ -51,7 +51,7 @@ export function shuffleCards(cards: Card[]): Card[] {
  * Funtion to test if two cards are the same
  * @returns All cards with indications in them if they are found or not
  */
-export function validateCombination(cards: Card[], turn: {id: number, name: string}[]): Card[] {
+export const validateCombination = (cards: Card[], turn: {id: number, name: string}[]): Card[] => {
   return cards.map((card) => {
     if (card.isFlipped && !card.isSucceed) {
       if (turn[0].name === turn[1].name && turn[0].id !== turn[1].id) {
@@ -69,7 +69,7 @@ export function validateCombination(cards: Card[], turn: {id: number, name: stri
  * Funtion to reset the cards of a wrong combination
  * @returns All cards
  */
-export function cancelWrongCombination(cards: Card[]): Card[] {
+export const cancelWrongCombination = (cards: Card[]): Card[] => {
   return cards.map((card) => {
     if (card.isFailed) {
       return { ...card, isFlipped: false, isFailed: false }
@@ -83,7 +83,7 @@ export function cancelWrongCombination(cards: Card[]): Card[] {
  * Funtion to test if all cards are found
  * @returns boolean - true: if all cards are found | false: otherwise
  */
-export function isAllCardsFound(cards: Card[]): boolean {
+export const isAllCardsFound = (cards: Card[]): boolean => {
   const foundCard = cards.find(({isSucceed}) => isSucceed === false);
 
   return !foundCard ? true : false;
