@@ -61,7 +61,7 @@ export const validateCombination = (cards: Card[], turn: {id: number, name: stri
       }
     }
 
-    return card
+    return card;
   });
 }
 

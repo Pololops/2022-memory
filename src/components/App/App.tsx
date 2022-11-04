@@ -37,18 +37,22 @@ export default function App() {
 
   useEffect(() => {
     if (turn.length > 1) {
+      const isTurnWin = (turn[0].name === turn[1].name) && (turn[0].id !== turn[1].id);
+
       dispatch(testCombination());
 
-      if (turn[0].name === turn[1].name && turn[0].id !== turn[1].id) {
+      let timer = 0;
+      if (isTurnWin) {
         dispatch(increaseScore());
+        dispatch(searchNotFoundCard());
       } else {
+        timer = 1500;
         dispatch(decreaseScore());
       }
 
-      dispatch(searchNotFoundCard());
       setTimeout(() => {
         dispatch(initNextTurn());
-      }, 1500);
+      }, timer);
     }
   }, [turn]);
 
