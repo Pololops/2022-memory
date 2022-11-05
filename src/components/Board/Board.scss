@@ -1,17 +1,19 @@
 @use 'src/styles/_vars';
 
 .board {
-	max-width: ((vars.$card-length * 4) + (20px * 3));
-	padding: 20px;
+	min-width: 245px;
+	max-width: 530px;
+	width: 88%;
+	aspect-ratio: 1/1;
+	padding: 5%;
 	margin: 0;
 	list-style: none;
 	border-radius: 5px;
-	background-color: vars.$board-bg-color;
-	box-shadow: 0 5px 10px dimgray;
-
+	background-color: #6e6d70;
+	box-shadow: 0 5px 10px dimgrey;
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
 	align-items: center;
-	gap: 20px;
+	gap: 4%;
 }

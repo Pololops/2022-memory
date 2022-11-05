@@ -32,12 +32,7 @@ export default function Card({
 
   return (
     <li 
-      className={`
-        card 
-        ${isFlipped ? `flipped` : ``} 
-        ${isSucceed ? `success` : ``} 
-        ${isFailed ? `fail` : ``}
-      `}
+      className={`card${isFlipped ? ` flipped` : ``}${isSucceed ? ` success` : ``}${isFailed ? ` fail` : ``}`}
       onClick={onClickHandler}
     >
       <div className="card__inner">

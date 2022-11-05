@@ -2,8 +2,8 @@
 
 .card {
 	cursor: pointer;
-	width: vars.$card-length;
-	height: vars.$card-length;
+	width: calc(25% - 20px);
+  aspect-ratio: 1 / 1;
 	perspective: 2000px;
 
 	&__inner {

@@ -12,7 +12,7 @@ export default function Modal({ children }: Children) {
   return (
     <div 
       data-testid="modal" 
-      className={`modal ${!isModalVisible ? 'hide' : ''}`}
+      className={`modal${!isModalVisible ? ' hide' : ''}`}
     >
       {children}
     </div>
