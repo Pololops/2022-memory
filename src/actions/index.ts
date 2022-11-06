@@ -1,5 +1,6 @@
 import type { CardFromData } from '../state/index';
 
+export const GET_SCORE_FROM_LOCAL_STORAGE = 'GET_SCORE_FROM_LOCAL_STORAGE';
 export const GET_CARDS = 'GET_CARDS';
 export const FLIP_CARD = 'FLIP_CARD';
 export const START_GAME = 'START_GAME';
@@ -16,6 +17,7 @@ interface Action<T, P> {
 }
 
 type anyActions = Action<string, any>;
+type getScoreFromLocalStorageAction = Action<typeof GET_SCORE_FROM_LOCAL_STORAGE, null>;
 type getCardsAction = Action<typeof GET_CARDS, CardFromData[]>;
 type flipCardAction = Action<typeof FLIP_CARD, number>;
 type startGameAction = Action<typeof START_GAME, null>;
@@ -28,6 +30,7 @@ type decreaseScoreAction = Action<typeof DECREASE_SCORE, number>;
 
 
 export type Actions = 
+    getScoreFromLocalStorageAction | 
     getCardsAction | 
     flipCardAction | 
     startGameAction | 
@@ -48,6 +51,13 @@ function createAction<T extends string, P>(type: T, payload: P): Action<T, P> {
     if (!payload) return { type };
 
     return { type, payload };
+}
+
+/**
+ * Action type function to get score from localStorage
+ */
+export function getScoreFromLocalStorage(): getScoreFromLocalStorageAction {
+    return createAction(GET_SCORE_FROM_LOCAL_STORAGE, null);
 }
 
 /**
