@@ -14,15 +14,19 @@ export default function TimeCount() {
   const isModalVisible = useAppSelector((state) => state.isModalVisible);
   const maxTime = useAppSelector((state) => state.counter);
   const [time, setTime] = useState(maxTime);
+  const [isCounterRunning, setIsCounterRunning] = useState(false);
 
   useEffect(() => {
     if (!isModalVisible) {
+      setIsCounterRunning(true);
+      setTime(maxTime);
       // Decrease time by 1 every second
       timerInterval = setInterval(() => {
         setTime((prevTime) => prevTime - 1 / 100);
       }, 10);
     } else {
-      setTime(maxTime);
+      clearInterval(timerInterval);
+      setIsCounterRunning(false);
     }
 
     return () => clearInterval(timerInterval);
@@ -37,7 +41,7 @@ export default function TimeCount() {
 
   return (
     <div data-testid="time-counter" className="time-counter">
-      <ProgressBar time={time} maxTime={maxTime} />
+      <ProgressBar time={time} maxTime={maxTime} isCounterRunning={isCounterRunning} />
     </div>
   )
 }

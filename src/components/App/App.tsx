@@ -7,7 +7,6 @@ import {
   testCombination, 
   searchNotFoundCard, 
   initNextTurn,
-  getScoreFromLocalStorage,
   increaseScore,
   decreaseScore,
 } from '../../actions';
@@ -33,7 +32,6 @@ export default function App() {
   }
 
   useEffect(() => {
-    dispatch(getScoreFromLocalStorage());
     dispatch(getCards(cards));
   }, []);
 

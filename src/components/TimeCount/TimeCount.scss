@@ -18,6 +18,11 @@
 		background: vars.$time-progress-bg-gradient-color;
 		background-attachment: fixed;
 		animation: slide 1s linear infinite;
+    transition: width 200ms;
+
+    &.stopped {
+      animation-play-state: paused;
+    }
 	}
 }
 

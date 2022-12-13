@@ -19,7 +19,6 @@ import {
   STOP_GAME, 
   TEST_COMBINATION, 
   INIT_NEXT_TURN, 
-  GET_SCORE_FROM_LOCAL_STORAGE, 
   INCREASE_SCORE, 
   DECREASE_SCORE, 
 } from '../actions';
@@ -63,6 +62,7 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
       return {
         ...state,
         cards: [...shuffledNewCards],
+        score: 0,
         gameIsOn: true,
         isModalVisible: false,
         turnNumber: state.turnNumber + 1,
@@ -95,15 +95,6 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
         ...state,
         gameIsOn: false,
         isModalVisible: true,
-      };
-    }
-
-    case GET_SCORE_FROM_LOCAL_STORAGE: { 
-      const localScore = parseInt(sessionStorage.getItem('score') ?? '0');
-
-      return {
-        ...state,
-        score: localScore,
       };
     }
 
