@@ -1,13 +1,21 @@
+@use 'src/styles/_vars';
+
 .modal {
 	position: absolute;
 	top: 20%;
-	width: calc(100% - 5rem);
-	max-width: 600px;
-	padding: 2rem;
+	left: 50%;
+	min-width: 300px;
+  transform: translate(-50%, 0);
+	display: flex;
+	flex-direction: column;
+	gap: 4em;
+	padding: 1.5em 2em;
 	text-align: center;
+	white-space: nowrap;
 	border-radius: 5px;
 	box-shadow: 0 1px 20px black;
 	background-color: white;
+	background: vars.$background-gradient;
 	transition: all 300ms;
 
 	&.hide {

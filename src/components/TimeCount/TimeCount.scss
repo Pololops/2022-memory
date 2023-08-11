@@ -2,13 +2,14 @@
 
 .time-counter {
 	width: calc(100% - 0.4rem);
-	max-width: 580px;
 	height: 12px;
-	margin: 1rem;
+	margin: 0.5em;
 	border: 0.2rem solid vars.$board-bg-color;
-	border-radius: 1rem;
+	border-radius: 5px;
 	background-color: vars.$board-bg-color;
+	box-shadow: vars.$board-shadow;
 	overflow: hidden;
+	z-index: 1;
 
 	&__progress {
 		width: 0;

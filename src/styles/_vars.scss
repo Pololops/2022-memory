@@ -1,19 +1,27 @@
-/* Cards colors */
-$board-bg-color: #6e6d70;
-$cards-back-color: #130f12;
-$cards-success-color: #45ff53;
-$cards-fail-color: #ec1a3e;
+/* Pokeball colors */
+$background-gradient: linear-gradient(#f43f5e, #f43f5e 45%, black 45%, black 55%, white 55%, white);
 
-/* Card sqared size */
+/* Cards colors */
+$board-bg-color: #6b7280;
+$board-shadow: 0 2px 5px dimgrey;
+$cards-back-color: #130f12;
+$cards-success-color: #10b981;
+$cards-fail-color: #f43f5e;
+
+/* Button colors */
+$button-bg-color: lightslategray;
+$button-hover-bg-color: rgb(70, 87, 103);
+
+/* Card squared size */
 $card-length: 120px;
 
 /* Timebar colors */
 $time-bg-color: #d2d1d2;
-$time-progress-bg-color: #ff1a16;
+$time-progress-bg-color: #f43f5e;
 $time-progress-bg-gradient-color: repeating-linear-gradient(
 	140deg,
-  #ff1a16,
-  #ff1a16 10px,
-	#f98788 10px,
-	#f98788 20px
+  #f43f5e,
+  #f43f5e 10px,
+	#fda4af 10px,
+	#fda4af 20px
 );

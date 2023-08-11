@@ -1,0 +1,25 @@
+@use 'src/styles/_vars';
+
+.modal__button {
+  cursor: pointer;
+  color: white;
+  text-shadow: 0 -1px 1px #333;
+  font-variant: all-small-caps;
+  font-size: 0.9em;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: vars.$button-bg-color;
+  box-shadow: 0 1px 2px lightgray;
+  transition: all 200ms;
+}
+
+.modal__button:hover {
+  background-color: vars.$button-hover-bg-color;
+  box-shadow: 0 1px 4px gray;
+}
+
+.modal__button:active {
+  box-shadow: 0 0px 1px gray;
+}

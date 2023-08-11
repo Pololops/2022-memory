@@ -1,3 +1,5 @@
+import './Button.scss';
+
 interface Props {
   text: string,
   onClick: React.MouseEventHandler,

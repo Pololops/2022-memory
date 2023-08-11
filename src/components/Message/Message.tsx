@@ -1,9 +1,9 @@
 import './Message.scss';
 
 interface Props {
-  text: string
+  children: React.ReactNode,
 }
 
-export default function Message({ text }: Props) {
-  return <p data-testid="message" className="message">{text}</p>
+export default function Message({ children }: Props) {
+  return <p className="message">{children}</p>
 }

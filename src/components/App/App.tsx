@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import useAppDispatch from '../../hooks/useDispatch';
 import useAppSelector from '../../hooks/useSelector';
-import { 
-  getCards, 
+import {
+  getCards,
   startGame,
-  testCombination, 
-  searchNotFoundCard, 
+  testCombination,
+  searchNotFoundCard,
   initNextTurn,
   increaseScore,
   decreaseScore,
@@ -61,14 +62,31 @@ export default function App() {
       <Score />
       <Board />
       <TimeCount />
-      <Modal>
-        <Message text={turnNumber < 1 ? 'Bienvenue dans le jeu du Memory !' : `La partie est terminée ! Vous avez obtenu ${score} point${score > 1 ? 's' : ''}`}  />
-        <Button 
-          text={turnNumber < 1 ? 'Commencer une partie' : 'Recommencer une partie'} 
-          
-          onClick={clickButtonHandler} 
-        />
-      </Modal>
+      {
+        createPortal(
+          <Modal>
+            <Message>
+              {
+                turnNumber < 1
+                  ? 'Bienvenue dans le jeu Pokémon Memory !'
+                  : (
+                    <>
+                      La partie est terminée !
+                      <br />
+                      Vous avez obtenu {score} point{score > 1 ? 's' : ''}
+                    </>
+                  )
+              }
+            </Message>
+            <Button
+              text={turnNumber < 1 ? 'Commencer une partie' : 'Recommencer une partie'}
+
+              onClick={clickButtonHandler}
+            />
+          </Modal>,
+          document.body
+        )
+      }
     </div>
   )
 }
