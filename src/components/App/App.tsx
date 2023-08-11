@@ -12,7 +12,7 @@ import {
 } from '../../actions';
 
 import './App.scss';
-import cards from '../../assets/data/cards.json';
+import cards from '../../assets/data/cards-pokemon.json';
 
 import Score from '../Score/Score';
 import Board from '../Board/Board';

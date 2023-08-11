@@ -1,0 +1,12 @@
+[
+	{ "id": 1, "name": "bulbizar", "url": "/images-pokemon/image1.png" },
+	{ "id": 2, "name": "salameche", "url": "/images-pokemon/image2.png" },
+	{ "id": 3, "name": "carapuce", "url": "/images-pokemon/image3.png" },
+	{ "id": 4, "name": "papilusion", "url": "/images-pokemon/image4.png" },
+	{ "id": 5, "name": "rougoupse", "url": "/images-pokemon/image5.png" },
+	{ "id": 6, "name": "pikachu", "url": "/images-pokemon/image6.png" },
+	{ "id": 7, "name": "miaousse", "url": "/images-pokemon/image7.png" },
+	{ "id": 8, "name": "psychocouac", "url": "/images-pokemon/image8.png" },
+	{ "id": 9, "name": "kraby", "url": "/images-pokemon/image9.png" },
+	{ "id": 10, "name": "electec", "url": "/images-pokemon/image10.png" }
+]
