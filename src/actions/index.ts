@@ -27,15 +27,15 @@ type increaseScoreAction = Action<typeof INCREASE_SCORE, number>;
 type decreaseScoreAction = Action<typeof DECREASE_SCORE, number>;
 
 
-export type Actions = 
-    getCardsAction | 
-    flipCardAction | 
-    startGameAction | 
-    stopGameAction | 
-    testCombinationAction | 
-    searchNotFoundCardAction | 
+export type Actions =
+    getCardsAction |
+    flipCardAction |
+    startGameAction |
+    stopGameAction |
+    testCombinationAction |
+    searchNotFoundCardAction |
     initNextTurnAction |
-    increaseScoreAction | 
+    increaseScoreAction |
     decreaseScoreAction |
     anyActions;
 
@@ -103,7 +103,7 @@ export function stopGame(): stopGameAction {
  * Action type function to increase score by 10 points
  */
 export function increaseScore(): increaseScoreAction {
-    return createAction(INCREASE_SCORE, 10);
+    return createAction(INCREASE_SCORE, 20);
 }
 
 /**

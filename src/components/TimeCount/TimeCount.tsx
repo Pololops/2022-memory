@@ -10,7 +10,7 @@ let timerInterval: ReturnType<typeof setInterval>;
 
 export default function TimeCount() {
   const dispatch = useAppDispatch();
-  
+
   const isModalVisible = useAppSelector((state) => state.isModalVisible);
   const maxTime = useAppSelector((state) => state.counter);
   const [time, setTime] = useState(maxTime);

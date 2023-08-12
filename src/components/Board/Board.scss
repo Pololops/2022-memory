@@ -1,9 +1,8 @@
 @use 'src/styles/_vars';
 
 .board {
-	width: 100%;
 	margin: 0;
-	padding: 1em 0;
+	padding: 1em;
 	gap: 1em;
 	list-style: none;
 	border-radius: 5px;

@@ -8,5 +8,15 @@
 	{ "id": 7, "name": "miaousse", "url": "/images-pokemon/image7.png" },
 	{ "id": 8, "name": "psychocouac", "url": "/images-pokemon/image8.png" },
 	{ "id": 9, "name": "kraby", "url": "/images-pokemon/image9.png" },
-	{ "id": 10, "name": "electec", "url": "/images-pokemon/image10.png" }
+	{ "id": 10, "name": "electec", "url": "/images-pokemon/image10.png" },
+	{ "id": 11, "name": "flambino", "url": "/images-pokemon/image11.png" },
+	{ "id": 12, "name": "ouistempo", "url": "/images-pokemon/image12.png" },
+	{ "id": 13, "name": "hippopotas", "url": "/images-pokemon/image13.png" },
+	{ "id": 14, "name": "macogneur", "url": "/images-pokemon/image14.png" },
+	{ "id": 15, "name": "tivoli", "url": "/images-pokemon/image15.png" },
+	{ "id": 16, "name": "escalangue", "url": "/images-pokemon/image16.png" },
+	{ "id": 17, "name": "brazegali", "url": "/images-pokemon/image17.png" },
+	{ "id": 18, "name": "dracaufeu", "url": "/images-pokemon/image18.png" },
+	{ "id": 19, "name": "rayquaza", "url": "/images-pokemon/image19.png" },
+	{ "id": 20, "name": "riolu", "url": "/images-pokemon/image20.png" }
 ]
