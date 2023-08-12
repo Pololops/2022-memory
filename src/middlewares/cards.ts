@@ -8,11 +8,11 @@ import type { RootState } from '../state';
 import type { Actions } from '../actions';
 
 export const validateCombination: Middleware<{}, RootState> = (store) => (next: Dispatch<Actions>) => (action: Actions) => {
- switch (action.type) {
+  switch (action.type) {
     case SEARCH_NOT_FOUND_CARD: {
       const state = store.getState();
 
-      const isCardsFound = isAllCardsFound(state.cards);
+      const isCardsFound = isAllCardsFound(state.playingCards);
 
       if (isCardsFound) {
         store.dispatch(stopGame());

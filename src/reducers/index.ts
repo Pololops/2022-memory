@@ -2,66 +2,48 @@ import initialState from '../state';
 import type { RootState } from '../state';
 
 
-import { 
-  duplicateCards, 
-  resetCards, 
-  shuffleCards, 
-  validateCombination, 
-  cancelWrongCombination, 
+import {
+  createEmptyCards,
+  duplicateCards,
+  shuffleCards,
+  validateCombination,
+  cancelWrongCombination,
+  selectCards,
+  resetPlayingCards,
 } from '../utils/cardsOperations';
 
 import type { Actions } from '../actions';
 
-import {  
-  GET_CARDS, 
+import {
+  GET_CARDS,
   FLIP_CARD,
-  START_GAME, 
-  STOP_GAME, 
-  TEST_COMBINATION, 
-  INIT_NEXT_TURN, 
-  INCREASE_SCORE, 
-  DECREASE_SCORE, 
+  START_GAME,
+  STOP_GAME,
+  TEST_COMBINATION,
+  INIT_NEXT_TURN,
+  INCREASE_SCORE,
+  DECREASE_SCORE,
 } from '../actions';
 
 const reducer = (state: RootState = initialState, action: Actions): RootState => {
   switch (action.type) {
     case GET_CARDS: {
-      const cards = duplicateCards(action.payload);
-      const initializedCards = resetCards(cards);
-    
       return {
         ...state,
-        cards: [...initializedCards],
-      };
-    }
-
-    case FLIP_CARD: {
-      const updatedTurn = [...state.turn];
-
-      const updatedCards = state.cards.map((card) => {
-        if(card.id === action.payload) {
-          // Add id and name of flipped card into the "turn" key of state, as buffer
-          updatedTurn.push({ id: card.id, name: card.name });
-          
-          return { ...card, isFlipped: true }
-        }
-        return card;
-      });
-
-      return {
-        ...state,
-        cards: updatedCards,
-        turn: updatedTurn,
+        allCards: action.payload,
+        playingCards: createEmptyCards(state.cardsQuantity * 2),
       };
     }
 
     case START_GAME: {
-      const newsCards = resetCards(state.cards);
-      const shuffledNewCards = shuffleCards(newsCards);
+      const selectedCards = selectCards(state.allCards, state.cardsQuantity);
+      const duplicatedCards = duplicateCards(selectedCards, state.allCards.length);
+      const initPlayingCards = resetPlayingCards(duplicatedCards);
+      const shuffledPlayingCards = shuffleCards(initPlayingCards);
 
       return {
         ...state,
-        cards: [...shuffledNewCards],
+        playingCards: shuffledPlayingCards,
         score: 0,
         gameIsOn: true,
         isModalVisible: false,
@@ -69,21 +51,41 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
       };
     }
 
-    case TEST_COMBINATION: {
-      const updatedCards = validateCombination(state.cards, state.turn);
+    case FLIP_CARD: {
+      const updatedTurn = [...state.turn];
+
+      const updatedCards = state.playingCards.map((card) => {
+        if (card.id === action.payload) {
+          // Add id and name of flipped card into the "turn" key of state, as buffer
+          updatedTurn.push({ id: card.id, name: card.name });
+
+          return { ...card, isFlipped: true }
+        }
+        return card;
+      });
 
       return {
         ...state,
-        cards: updatedCards,
+        playingCards: updatedCards,
+        turn: updatedTurn,
+      };
+    }
+
+    case TEST_COMBINATION: {
+      const updatedCards = validateCombination(state.playingCards, state.turn);
+
+      return {
+        ...state,
+        playingCards: updatedCards,
       };
     }
 
     case INIT_NEXT_TURN: {
-      const updatedCards = cancelWrongCombination(state.cards);
+      const updatedCards = cancelWrongCombination(state.playingCards);
 
       return {
         ...state,
-        cards: updatedCards,
+        playingCards: updatedCards,
         turn: [],
       };
     }

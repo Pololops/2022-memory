@@ -5,29 +5,28 @@ import './Board.scss';
 import Card from '../Card/Card';
 
 export default function Board() {
-  const cards = useAppSelector((state) => state.cards);
+  const cards = useAppSelector((state) => state.playingCards);
 
   return (
     <ul data-testid="board" className="board">
       {
-        cards.length > 0 && 
+        cards.length > 0 &&
         cards.map((
           {
-            id, 
-            name, 
-            url, 
-            isFlipped, 
-            isSucceed, 
+            id,
+            url,
+            isFlipped,
+            isSucceed,
             isFailed,
           }
         ) => (
-          <Card 
-            key={id} 
-            id={id} 
-            image={url} 
-            isFlipped={isFlipped} 
-            isSucceed={isSucceed} 
-            isFailed={isFailed} 
+          <Card
+            key={id}
+            id={id}
+            image={url}
+            isFlipped={isFlipped}
+            isSucceed={isSucceed}
+            isFailed={isFailed}
           />
         ))
       }

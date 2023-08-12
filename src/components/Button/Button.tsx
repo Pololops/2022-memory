@@ -6,5 +6,10 @@ interface Props {
 }
 
 export default function Button({ text, onClick }: Props) {
-  return <button className="modal__button" onClick={onClick}>{text}</button>
+  return <button
+    className="modal__button"
+    onClick={onClick}
+  >
+    {text}
+  </button>
 }

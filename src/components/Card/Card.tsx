@@ -13,11 +13,11 @@ interface Props {
 }
 
 export default function Card({
-  id, 
-  image, 
-  isFlipped, 
-  isSucceed, 
-  isFailed, 
+  id,
+  image,
+  isFlipped,
+  isSucceed,
+  isFailed,
 }: Props) {
   const dispatch = useAppDispatch();
 
@@ -31,15 +31,15 @@ export default function Card({
   }
 
   return (
-    <li 
+    <li
       className={`card${isFlipped ? ` flipped` : ``}${isSucceed ? ` success` : ``}${isFailed ? ` fail` : ``}`}
       onClick={onClickHandler}
     >
       <div className="card__inner">
         <div className="card__inner__face card__inner__face--back"></div>
-        <div 
+        <div
           className="card__inner__face card__inner__face--front"
-          style={{backgroundImage: `url(${image})`}}
+          style={{ backgroundImage: image !== '' ? `url(${image})` : `none` }}
         ></div>
       </div>
     </li>

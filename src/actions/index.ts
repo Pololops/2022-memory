@@ -18,7 +18,7 @@ interface Action<T, P> {
 type anyActions = Action<string, any>;
 type getCardsAction = Action<typeof GET_CARDS, CardFromData[]>;
 type flipCardAction = Action<typeof FLIP_CARD, number>;
-type startGameAction = Action<typeof START_GAME, null>;
+type startGameAction = Action<typeof START_GAME, CardFromData[]>;
 type stopGameAction = Action<typeof STOP_GAME, null>;
 type testCombinationAction = Action<typeof TEST_COMBINATION, null>;
 type searchNotFoundCardAction = Action<typeof SEARCH_NOT_FOUND_CARD, null>;
@@ -67,8 +67,8 @@ export function flipCard(id: number): flipCardAction {
 /**
  * Action type function to reset and start the game
  */
-export function startGame(): startGameAction {
-    return createAction(START_GAME, null);
+export function startGame(cards: CardFromData[]): startGameAction {
+    return createAction(START_GAME, cards);
 }
 
 /**

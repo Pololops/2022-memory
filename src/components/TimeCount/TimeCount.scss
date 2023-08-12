@@ -9,7 +9,6 @@
 	background-color: vars.$board-bg-color;
 	box-shadow: vars.$board-shadow;
 	overflow: hidden;
-	z-index: 1;
 
 	&__progress {
 		width: 0;

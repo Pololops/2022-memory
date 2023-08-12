@@ -29,7 +29,7 @@ export default function App() {
   const score = useAppSelector((state) => state.score);
 
   const clickButtonHandler = () => {
-    dispatch(startGame());
+    dispatch(startGame(cards));
   }
 
   useEffect(() => {
