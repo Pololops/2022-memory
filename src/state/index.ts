@@ -14,6 +14,8 @@ export type Card = {
 }
 
 export type RootState = {
+  isLoading: boolean,
+  loadedImages: number,
   gameIsOn: boolean,
   allCards: CardFromData[] | [],
   playingCards: Card[] | [];
@@ -26,6 +28,8 @@ export type RootState = {
 }
 
 const initialState: RootState = {
+  isLoading: true, // prevent playing when loading
+  loadedImages: 0, // count the number of loaded images
   gameIsOn: false, // prevent playing when game is off
   allCards: [], // All cards from the API
   playingCards: [], // The cards to play with

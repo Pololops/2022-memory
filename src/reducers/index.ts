@@ -16,6 +16,7 @@ import type { Actions } from '../actions';
 
 import {
   GET_CARDS,
+  LOADING_IMAGE_COMPLETE,
   FLIP_CARD,
   START_GAME,
   STOP_GAME,
@@ -32,6 +33,22 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
         ...state,
         allCards: action.payload,
         playingCards: createEmptyCards(state.cardsQuantity * 2),
+      };
+    }
+
+    case LOADING_IMAGE_COMPLETE: {
+      const addLoadedImage = state.loadedImages + 1;
+      if (addLoadedImage === state.allCards.length) {
+        return {
+          ...state,
+          isLoading: false,
+          loadedImages: state.allCards.length,
+        };
+      }
+
+      return {
+        ...state,
+        loadedImages: addLoadedImage,
       };
     }
 

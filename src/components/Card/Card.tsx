@@ -1,6 +1,6 @@
 import useAppDispatch from '../../hooks/useDispatch';
 import useAppSelector from '../../hooks/useSelector';
-import { flipCard } from '../../actions';
+import { flipCard, loadingImageComplete } from '../../actions';
 
 import './Card.scss';
 
@@ -10,6 +10,7 @@ interface Props {
   isFlipped: boolean,
   isSucceed: boolean,
   isFailed: boolean,
+  isLoadControlled: boolean,
 }
 
 export default function Card({
@@ -18,11 +19,16 @@ export default function Card({
   isFlipped,
   isSucceed,
   isFailed,
+  isLoadControlled
 }: Props) {
   const dispatch = useAppDispatch();
 
   const gameIsOn = useAppSelector((state) => state.gameIsOn);
   const turn = useAppSelector((state) => state.turn);
+
+  const onImageLoadedHandler = () => {
+    dispatch(loadingImageComplete());
+  }
 
   const onClickHandler = () => {
     if (gameIsOn && !isFlipped && turn.length < 2) {
@@ -40,7 +46,15 @@ export default function Card({
         <div
           className="card__inner__face card__inner__face--front"
           style={{ backgroundImage: image !== '' ? `url(${image})` : `none` }}
-        ></div>
+        >
+          {isLoadControlled && (
+            <img
+              src={image}
+              alt=""
+              onLoad={onImageLoadedHandler}
+            />
+          )}
+        </div>
       </div>
     </li>
   )

@@ -15,6 +15,7 @@ import {
 import './App.scss';
 import cards from '../../assets/data/cards-pokemon.json';
 
+import Spinner from '../Spinner/Spinner';
 import Score from '../Score/Score';
 import Board from '../Board/Board';
 import TimeCount from '../TimeCount/TimeCount';
@@ -24,6 +25,9 @@ import Button from '../Button/Button';
 
 export default function App() {
   const dispatch = useAppDispatch();
+  const isLoading = useAppSelector((state) => state.isLoading);
+  const allCards = useAppSelector((state) => state.allCards);
+  const playingCards = useAppSelector((state) => state.playingCards);
   const turn = useAppSelector((state) => state.turn);
   const turnNumber = useAppSelector((state) => state.turnNumber);
   const score = useAppSelector((state) => state.score);
@@ -59,8 +63,15 @@ export default function App() {
 
   return (
     <div className="app">
+      {isLoading && (
+        <Board cards={allCards} isLoadControlled={true} />
+      )}
+
       <Score />
-      <Board />
+      <Board
+        cards={playingCards}
+        isLoadControlled={false}
+      />
       <TimeCount />
       {
         createPortal(
@@ -78,11 +89,16 @@ export default function App() {
                   )
               }
             </Message>
-            <Button
-              text={turnNumber < 1 ? 'Commencer une partie' : 'Recommencer une partie'}
+            {isLoading
+              ? <Spinner />
+              : (
+                <Button
+                  text={turnNumber < 1 ? 'Commencer une partie' : 'Recommencer une partie'}
 
-              onClick={clickButtonHandler}
-            />
+                  onClick={clickButtonHandler}
+                />
+              )
+            }
           </Modal>,
           document.body
         )
