@@ -10,18 +10,17 @@ import {
   increaseScore,
   decreaseScore,
   startGame,
-  changeCardsQuantity,
+  decreaseCardsQuantity,
+  increaseCardsQuantity,
 } from '../../actions';
 
 import './App.scss';
 import cards from '../../assets/data/cards-pokemon.json';
 
-import Spinner from '../Spinner/Spinner';
 import Score from '../Score/Score';
 import Board from '../Board/Board';
 import TimeCount from '../TimeCount/TimeCount';
 import Modal from '../Modal/Modal';
-import Form from '../Form/Form';
 
 export default function App() {
   const dispatch = useAppDispatch();
@@ -42,8 +41,13 @@ export default function App() {
     return 'calc(800px + 9em))';
   }
 
-  const changeRangeHandler: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-    dispatch(changeCardsQuantity(Number(event.target.value)));
+  const clickDecreaseButtonHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
+    dispatch(decreaseCardsQuantity());
+    dispatch(getCards(cards));
+  }
+
+  const clickIncreaseButtonHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
+    dispatch(increaseCardsQuantity());
     dispatch(getCards(cards));
   }
 
@@ -88,23 +92,15 @@ export default function App() {
         isLoadControlled={false}
       />
       <TimeCount />
-      {
-        createPortal(
-          <Modal>
-            {
-              isLoading
-                ? <Spinner />
-                : (
-                  <Form
-                    onChangeRange={changeRangeHandler}
-                    onButtonClick={clickButtonHandler}
-                  />
-                )
-            }
-          </Modal>,
-          document.body
-        )
-      }
+
+      {createPortal(
+        <Modal
+          onDecreaseButtonClick={clickDecreaseButtonHandler}
+          onIncreaseButtonClick={clickIncreaseButtonHandler}
+          onButtonClick={clickButtonHandler}
+        />,
+        document.body
+      )}
     </div>
   )
 }

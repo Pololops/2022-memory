@@ -1,15 +1,21 @@
 import './Button.scss';
 
 interface Props {
-  text: string,
+  children: React.ReactNode,
   onClick: React.MouseEventHandler,
 }
 
-export default function Button({ text, onClick }: Props) {
-  return <button
-    className="modal__button"
-    onClick={onClick}
-  >
-    {text}
-  </button>
+export default function Button({
+  children,
+  onClick,
+}: Props) {
+  return (
+    <button
+      type="button"
+      className="modal__button"
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
 }

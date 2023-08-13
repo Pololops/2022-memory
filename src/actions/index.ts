@@ -2,7 +2,8 @@ import type { CardFromData } from '../state/index';
 
 export const GET_CARDS = 'GET_CARDS';
 export const LOADING_IMAGE_COMPLETE = 'LOADING_IMAGE_COMPLETE';
-export const CHANGE_CARDS_QUANTITY = 'CHANGE_CARDS_QUANTITY';
+export const DECREASE_CARDS_QUANTITY = 'DECREASE_CARDS_QUANTITY';
+export const INCREASE_CARDS_QUANTITY = 'INCREASE_CARDS_QUANTITY';
 export const FLIP_CARD = 'FLIP_CARD';
 export const START_GAME = 'START_GAME';
 export const TEST_COMBINATION = 'TEST_COMBINATION';
@@ -20,7 +21,8 @@ interface Action<T, P> {
 type anyActions = Action<string, any>;
 type getCardsAction = Action<typeof GET_CARDS, CardFromData[]>;
 type loadingCompleteAction = Action<typeof LOADING_IMAGE_COMPLETE, null>;
-type changeCardsQuantityAction = Action<typeof CHANGE_CARDS_QUANTITY, number>;
+type decreaseCardsQuantityAction = Action<typeof DECREASE_CARDS_QUANTITY, null>;
+type increaseCardsQuantityAction = Action<typeof INCREASE_CARDS_QUANTITY, null>;
 type flipCardAction = Action<typeof FLIP_CARD, number>;
 type startGameAction = Action<typeof START_GAME, CardFromData[]>;
 type stopGameAction = Action<typeof STOP_GAME, null>;
@@ -34,7 +36,8 @@ type decreaseScoreAction = Action<typeof DECREASE_SCORE, number>;
 export type Actions =
     getCardsAction |
     loadingCompleteAction |
-    changeCardsQuantityAction |
+    decreaseCardsQuantityAction |
+    increaseCardsQuantityAction |
     flipCardAction |
     startGameAction |
     stopGameAction |
@@ -64,10 +67,17 @@ export function getCards(cards: CardFromData[]): getCardsAction {
 }
 
 /** 
- * Action type function to change cards quantity 
+ * Action type function to decrease cards quantity 
  */
-export function changeCardsQuantity(quantity: number): changeCardsQuantityAction {
-    return createAction(CHANGE_CARDS_QUANTITY, quantity);
+export function decreaseCardsQuantity(): decreaseCardsQuantityAction {
+    return createAction(DECREASE_CARDS_QUANTITY, null);
+}
+
+/**
+ * Action type function to increase cards quantity
+ */
+export function increaseCardsQuantity(): increaseCardsQuantityAction {
+    return createAction(INCREASE_CARDS_QUANTITY, null);
 }
 
 /** 

@@ -17,7 +17,8 @@ import type { Actions } from '../actions';
 import {
   GET_CARDS,
   LOADING_IMAGE_COMPLETE,
-  CHANGE_CARDS_QUANTITY,
+  DECREASE_CARDS_QUANTITY,
+  INCREASE_CARDS_QUANTITY,
   FLIP_CARD,
   START_GAME,
   STOP_GAME,
@@ -53,10 +54,25 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
       };
     }
 
-    case CHANGE_CARDS_QUANTITY: {
+    case DECREASE_CARDS_QUANTITY: {
+      const newCardsQuantity = state.cardsQuantity <= 8
+        ? state.cardsQuantity
+        : state.cardsQuantity - 2;
+
       return {
         ...state,
-        cardsQuantity: action.payload,
+        cardsQuantity: newCardsQuantity,
+      };
+    }
+
+    case INCREASE_CARDS_QUANTITY: {
+      const newCardsQuantity = state.cardsQuantity >= 20
+        ? state.cardsQuantity
+        : state.cardsQuantity + 2;
+
+      return {
+        ...state,
+        cardsQuantity: newCardsQuantity,
       };
     }
 
