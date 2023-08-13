@@ -17,6 +17,7 @@ import type { Actions } from '../actions';
 import {
   GET_CARDS,
   LOADING_IMAGE_COMPLETE,
+  CHANGE_CARDS_QUANTITY,
   FLIP_CARD,
   START_GAME,
   STOP_GAME,
@@ -49,6 +50,13 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
       return {
         ...state,
         loadedImages: addLoadedImage,
+      };
+    }
+
+    case CHANGE_CARDS_QUANTITY: {
+      return {
+        ...state,
+        cardsQuantity: action.payload,
       };
     }
 

@@ -4,12 +4,13 @@ import useAppDispatch from '../../hooks/useDispatch';
 import useAppSelector from '../../hooks/useSelector';
 import {
   getCards,
-  startGame,
   testCombination,
   searchNotFoundCard,
   initNextTurn,
   increaseScore,
   decreaseScore,
+  startGame,
+  changeCardsQuantity,
 } from '../../actions';
 
 import './App.scss';
@@ -20,19 +21,33 @@ import Score from '../Score/Score';
 import Board from '../Board/Board';
 import TimeCount from '../TimeCount/TimeCount';
 import Modal from '../Modal/Modal';
-import Message from '../Message/Message';
-import Button from '../Button/Button';
+import Form from '../Form/Form';
 
 export default function App() {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector((state) => state.isLoading);
   const allCards = useAppSelector((state) => state.allCards);
+  const cardsQuantity = useAppSelector((state) => state.cardsQuantity);
   const playingCards = useAppSelector((state) => state.playingCards);
   const turn = useAppSelector((state) => state.turn);
-  const turnNumber = useAppSelector((state) => state.turnNumber);
-  const score = useAppSelector((state) => state.score);
 
-  const clickButtonHandler = () => {
+  const appMaxWidth = () => {
+    if (cardsQuantity > 18) return 'calc(800px + 9em)';
+    if (cardsQuantity === 8) return 'calc(400px + 5em)';
+    if (cardsQuantity === 10) return 'calc(400px + 5em)';
+    if (cardsQuantity === 12) return 'calc(600px + 7em)';
+    if (cardsQuantity === 14) return 'calc(700px + 8em)';
+    if (cardsQuantity === 16) return 'calc(800px + 9em)';
+    if (cardsQuantity === 18) return 'calc(600px + 7em)';
+    return 'calc(800px + 9em))';
+  }
+
+  const changeRangeHandler: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    dispatch(changeCardsQuantity(Number(event.target.value)));
+    dispatch(getCards(cards));
+  }
+
+  const clickButtonHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
     dispatch(startGame(cards));
   }
 
@@ -62,7 +77,7 @@ export default function App() {
   }, [turn]);
 
   return (
-    <div className="app">
+    <div className="app" style={{ maxWidth: appMaxWidth() }}>
       {isLoading && (
         <Board cards={allCards} isLoadControlled={true} />
       )}
@@ -76,28 +91,15 @@ export default function App() {
       {
         createPortal(
           <Modal>
-            <Message>
-              {
-                turnNumber < 1
-                  ? 'Bienvenue dans le jeu Pokémon Memory !'
-                  : (
-                    <>
-                      La partie est terminée !
-                      <br />
-                      Vous avez obtenu {score} point{score > 1 ? 's' : ''}
-                    </>
-                  )
-              }
-            </Message>
-            {isLoading
-              ? <Spinner />
-              : (
-                <Button
-                  text={turnNumber < 1 ? 'Commencer une partie' : 'Recommencer une partie'}
-
-                  onClick={clickButtonHandler}
-                />
-              )
+            {
+              isLoading
+                ? <Spinner />
+                : (
+                  <Form
+                    onChangeRange={changeRangeHandler}
+                    onButtonClick={clickButtonHandler}
+                  />
+                )
             }
           </Modal>,
           document.body

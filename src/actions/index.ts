@@ -2,6 +2,7 @@ import type { CardFromData } from '../state/index';
 
 export const GET_CARDS = 'GET_CARDS';
 export const LOADING_IMAGE_COMPLETE = 'LOADING_IMAGE_COMPLETE';
+export const CHANGE_CARDS_QUANTITY = 'CHANGE_CARDS_QUANTITY';
 export const FLIP_CARD = 'FLIP_CARD';
 export const START_GAME = 'START_GAME';
 export const TEST_COMBINATION = 'TEST_COMBINATION';
@@ -19,6 +20,7 @@ interface Action<T, P> {
 type anyActions = Action<string, any>;
 type getCardsAction = Action<typeof GET_CARDS, CardFromData[]>;
 type loadingCompleteAction = Action<typeof LOADING_IMAGE_COMPLETE, null>;
+type changeCardsQuantityAction = Action<typeof CHANGE_CARDS_QUANTITY, number>;
 type flipCardAction = Action<typeof FLIP_CARD, number>;
 type startGameAction = Action<typeof START_GAME, CardFromData[]>;
 type stopGameAction = Action<typeof STOP_GAME, null>;
@@ -31,6 +33,8 @@ type decreaseScoreAction = Action<typeof DECREASE_SCORE, number>;
 
 export type Actions =
     getCardsAction |
+    loadingCompleteAction |
+    changeCardsQuantityAction |
     flipCardAction |
     startGameAction |
     stopGameAction |
@@ -57,6 +61,13 @@ function createAction<T extends string, P>(type: T, payload: P): Action<T, P> {
  */
 export function getCards(cards: CardFromData[]): getCardsAction {
     return createAction(GET_CARDS, cards);
+}
+
+/** 
+ * Action type function to change cards quantity 
+ */
+export function changeCardsQuantity(quantity: number): changeCardsQuantityAction {
+    return createAction(CHANGE_CARDS_QUANTITY, quantity);
 }
 
 /** 
