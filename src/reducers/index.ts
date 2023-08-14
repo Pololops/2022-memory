@@ -66,7 +66,8 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
     }
 
     case INCREASE_CARDS_QUANTITY: {
-      const newCardsQuantity = state.cardsQuantity >= 20
+      const maxQuantity = state.allCards.length > 20 ? 20 : state.allCards.length;
+      const newCardsQuantity = state.cardsQuantity >= maxQuantity
         ? state.cardsQuantity
         : state.cardsQuantity + 2;
 

@@ -35,7 +35,7 @@ const initialState: RootState = {
   playingCards: [], // The cards to play with
   score: 0, // The starting score
   counter: 60 * 3, // The time before game over in seconds
-  cardsQuantity: 20, // The number of cards to play with
+  cardsQuantity: 8, // The number of cards to play with
   isModalVisible: true, // The state of the welcome and end modal
   turn: [], // The buffer for a game turn, contains two played cards max to compare
   turnNumber: 0, // The total number of game
