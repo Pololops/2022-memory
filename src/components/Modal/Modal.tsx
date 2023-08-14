@@ -37,7 +37,7 @@ export default function Modal({
           turnNumber < 1
             ? (
               <>
-                Bienvenue dans le jeu Halloween Memory !
+                Bienvenue dans le jeu Pokémon Memory !
                 {!isLoading && minCardsValue !== maxCardsValue && (
                   <>
                     <br />
