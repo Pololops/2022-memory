@@ -95,6 +95,8 @@ export default function App() {
 
       {createPortal(
         <Modal
+          minCardsValue={8}
+          maxCardsValue={allCards.length > 20 ? 20 : allCards.length}
           onDecreaseButtonClick={clickDecreaseButtonHandler}
           onIncreaseButtonClick={clickIncreaseButtonHandler}
           onButtonClick={clickButtonHandler}
