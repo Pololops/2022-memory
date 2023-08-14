@@ -7,12 +7,16 @@ import Range from '../Range/Range';
 import './Modal.scss';
 
 interface Props {
+  minCardsValue: number,
+  maxCardsValue: number,
   onButtonClick: React.MouseEventHandler<HTMLButtonElement>,
   onDecreaseButtonClick: React.MouseEventHandler<HTMLButtonElement>,
   onIncreaseButtonClick: React.MouseEventHandler<HTMLButtonElement>,
 }
 
 export default function Modal({
+  minCardsValue,
+  maxCardsValue,
   onDecreaseButtonClick,
   onIncreaseButtonClick,
   onButtonClick,
@@ -33,8 +37,8 @@ export default function Modal({
           turnNumber < 1
             ? (
               <>
-                Bienvenue dans le jeu Pokémon Memory !
-                {!isLoading && (
+                Bienvenue dans le jeu Halloween Memory !
+                {!isLoading && minCardsValue !== maxCardsValue && (
                   <>
                     <br />
                     <br />
@@ -58,11 +62,15 @@ export default function Modal({
           ? <div className="modal__spinner"><Spinner /></div>
           : (
             <div className="modal__form">
-              <Range
-                value={cardsQuantity}
-                onDecreaseButtonClick={onDecreaseButtonClick}
-                onIncreaseButtonClick={onIncreaseButtonClick}
-              />
+              {minCardsValue !== maxCardsValue &&
+                <Range
+                  value={cardsQuantity}
+                  min={minCardsValue}
+                  max={maxCardsValue}
+                  onDecreaseButtonClick={onDecreaseButtonClick}
+                  onIncreaseButtonClick={onIncreaseButtonClick}
+                />
+              }
               <Button onClick={onButtonClick}>
                 {
                   turnNumber < 1

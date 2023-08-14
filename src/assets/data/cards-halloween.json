@@ -1,0 +1,10 @@
+[
+	{ "id": 1, "name": "ghost", "url": "/images-halloween/image1.png" },
+	{ "id": 2, "name": "witch", "url": "/images-halloween/image2.png" },
+	{ "id": 3, "name": "pumpkin", "url": "/images-halloween/image3.png" },
+	{ "id": 4, "name": "candy", "url": "/images-halloween/image4.png" },
+	{ "id": 5, "name": "cat", "url": "/images-halloween/image5.png" },
+	{ "id": 6, "name": "bats", "url": "/images-halloween/image6.png" },
+	{ "id": 7, "name": "spider", "url": "/images-halloween/image7.png" },
+	{ "id": 8, "name": "frankenstein", "url": "/images-halloween/image8.png" }
+]
