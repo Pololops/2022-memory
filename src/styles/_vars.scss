@@ -1,12 +1,13 @@
-/* Pokeball colors */
-$background-gradient: linear-gradient(#f43f5e, #f43f5e 50%, #10b981 50%, #10b981);
+$red: #f43f5e;
+$green: #10b981;
+
 
 /* Cards colors */
 $board-bg-color: #6b7280;
 $board-shadow: 0 2px 5px dimgrey;
 $cards-back-color: #130f12;
-$cards-success-color: #10b981;
-$cards-fail-color: #f43f5e;
+$cards-success-color: $green;
+$cards-fail-color: $red;
 
 /* Button colors */
 $button-bg-color: lightslategray;
@@ -17,11 +18,11 @@ $card-length: 120px;
 
 /* Timebar colors */
 $time-bg-color: #d2d1d2;
-$time-progress-bg-color: #f43f5e;
+$time-progress-bg-color: $red;
 $time-progress-bg-gradient-color: repeating-linear-gradient(
 	140deg,
-  #f43f5e,
-  #f43f5e 10px,
+  $red 0px,
+	$red 10px,
 	#fda4af 10px,
 	#fda4af 20px
 );

@@ -1,0 +1,63 @@
+@use 'src/styles/_vars';
+
+.themes {
+  position: relative;
+  height: 2em;
+  display: flex;
+  margin-bottom: 1em;
+  align-items: center;
+  font-size: 0.9em;
+  font-weight: bold;
+  font-variant: all-small-caps;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  box-shadow: 0 0 2px rgb(204, 204, 204);
+  overflow: hidden;
+
+  &:hover {
+    background-color: lightgray;
+  }
+
+  & label {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    padding: 0 0.5em 0 1em;
+    height: 100%;
+  }
+
+  & select {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    font-size: 1em;
+    font-weight: bold;
+    font-variant: all-small-caps;
+    border: none;
+    border-radius: 0;
+    height: 100%;
+    padding: 0 1em 0 0.5em;
+    text-indent: 5em;
+    background: transparent;
+    background-size: 0.8em;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    z-index: 1;
+  }
+
+  & select:focus {
+    outline: none;
+  }
+
+  & .select__icon {
+    width: 1.2em;
+    height: 100%;
+    color: black;
+    position: absolute;
+    top: 0.1em;
+    right: 0.5em;
+  }
+}

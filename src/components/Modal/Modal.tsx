@@ -2,6 +2,7 @@ import useAppSelector from '../../hooks/useSelector';
 import Button from '../Button/Button';
 import Message from '../Message/Message';
 import Spinner from '../Spinner/Spinner';
+import Select from '../Select/Select';
 import Range from '../Range/Range';
 
 import './Modal.scss';
@@ -12,6 +13,9 @@ interface Props {
   onButtonClick: React.MouseEventHandler<HTMLButtonElement>,
   onDecreaseButtonClick: React.MouseEventHandler<HTMLButtonElement>,
   onIncreaseButtonClick: React.MouseEventHandler<HTMLButtonElement>,
+  themes: { id: number, name: string, value: string }[],
+  currentTheme: string,
+  onChangeTheme: React.ChangeEventHandler<HTMLSelectElement>,
 }
 
 export default function Modal({
@@ -19,6 +23,9 @@ export default function Modal({
   maxCardsValue,
   onDecreaseButtonClick,
   onIncreaseButtonClick,
+  onChangeTheme,
+  themes,
+  currentTheme,
   onButtonClick,
 }: Props) {
   const isLoading = useAppSelector((state) => state.isLoading);
@@ -32,21 +39,10 @@ export default function Modal({
       data-testid="modal"
       className={`modal${!isModalVisible ? ' hide' : ''}`}
     >
-      <Message >
+      <Message>
         {
           turnNumber < 1
-            ? (
-              <>
-                Bienvenue dans le jeu Halloween Memory !
-                {!isLoading && minCardsValue !== maxCardsValue && (
-                  <>
-                    <br />
-                    <br />
-                    Choisissez le nombre de cartes que vous souhaitez :
-                  </>
-                )}
-              </>
-            )
+            ? <>Bienvenue dans le jeu de Memory !</>
             : (
               <>
                 La partie est terminée !
@@ -62,6 +58,11 @@ export default function Modal({
           ? <div className="modal__spinner"><Spinner /></div>
           : (
             <div className="modal__form">
+              <Select
+                themes={themes}
+                currentTheme={currentTheme}
+                onChangeTheme={onChangeTheme}
+              />
               {minCardsValue !== maxCardsValue &&
                 <Range
                   value={cardsQuantity}

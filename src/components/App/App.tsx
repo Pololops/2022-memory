@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import useAppDispatch from '../../hooks/useDispatch';
 import useAppSelector from '../../hooks/useSelector';
@@ -15,7 +15,9 @@ import {
 } from '../../actions';
 
 import './App.scss';
-import cards from '../../assets/data/cards-halloween.json';
+
+import themes from '../../assets/data/themes.json';
+import cards from '../../assets/data/cards.json';
 
 import Score from '../Score/Score';
 import Board from '../Board/Board';
@@ -30,6 +32,8 @@ export default function App() {
   const playingCards = useAppSelector((state) => state.playingCards);
   const turn = useAppSelector((state) => state.turn);
 
+  const [cardsTheme, setCardsTheme] = useState<keyof typeof cards>('halloween');
+
   const appMaxWidth = () => {
     if (cardsQuantity > 18) return 'calc(800px + 9em)';
     if (cardsQuantity === 8) return 'calc(400px + 5em)';
@@ -41,23 +45,27 @@ export default function App() {
     return 'calc(800px + 9em))';
   }
 
+  const changeThemeHandler: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const selectedTheme = event.target.value as keyof typeof cards;
+    console.log(selectedTheme);
+    setCardsTheme(selectedTheme);
+  }
+
   const clickDecreaseButtonHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
     dispatch(decreaseCardsQuantity());
-    dispatch(getCards(cards));
   }
 
   const clickIncreaseButtonHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
     dispatch(increaseCardsQuantity());
-    dispatch(getCards(cards));
   }
 
   const clickButtonHandler: React.MouseEventHandler<HTMLButtonElement> = () => {
-    dispatch(startGame(cards));
+    dispatch(startGame(cards[cardsTheme]));
   }
 
   useEffect(() => {
-    dispatch(getCards(cards));
-  }, []);
+    dispatch(getCards(cards[cardsTheme]));
+  }, [cardsQuantity, cardsTheme]);
 
   useEffect(() => {
     if (turn.length > 1) {
@@ -97,6 +105,9 @@ export default function App() {
         <Modal
           minCardsValue={8}
           maxCardsValue={allCards.length > 20 ? 20 : allCards.length}
+          themes={themes}
+          currentTheme={cardsTheme}
+          onChangeTheme={changeThemeHandler}
           onDecreaseButtonClick={clickDecreaseButtonHandler}
           onIncreaseButtonClick={clickIncreaseButtonHandler}
           onButtonClick={clickButtonHandler}

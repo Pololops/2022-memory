@@ -35,6 +35,7 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
         ...state,
         allCards: action.payload,
         playingCards: createEmptyCards(state.cardsQuantity * 2),
+        cardsQuantity: action.payload.length < state.cardsQuantity ? action.payload.length : state.cardsQuantity,
       };
     }
 
