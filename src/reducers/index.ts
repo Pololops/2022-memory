@@ -89,6 +89,7 @@ const reducer = (state: RootState = initialState, action: Actions): RootState =>
         playingCards: shuffledPlayingCards,
         score: 0,
         gameIsOn: true,
+        counter: 60 * (state.cardsQuantity / 8),
         isModalVisible: false,
         turnNumber: state.turnNumber + 1,
       };
